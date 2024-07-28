@@ -22,7 +22,8 @@ h1 {
 
 button {
     height: 2em;
-    width: 70%;
+    padding: 0 70px;
+    margin: 10px;
     font-size: 1.6em;
     border-radius: 25px;
     border: 3px solid #fff;

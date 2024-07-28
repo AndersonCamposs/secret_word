@@ -1,0 +1,9 @@
+.start-screen {
+    display: block;
+}
+
+.start-screen p {
+    color: rgba(228, 210, 19, 0.986);
+    font-size: 20px;
+    margin: 40px;
+}

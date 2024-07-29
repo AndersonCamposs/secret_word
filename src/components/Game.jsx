@@ -1,10 +1,21 @@
 import PropTypes from 'prop-types';
-
+import { useState , useRef } from 'react';
 import './Game.css';
+
 
 const Game = ({ 
   verifyLetter, pickedCategory, pickedWord, letters, 
   guessedLetters, wrongLetters, guesses, score}) => {
+  const [letter, setLetter] = useState('');
+  const letterInputRef = useRef(null);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    verifyLetter(letter);
+    setLetter('');
+    letterInputRef.current.focus();
+  }
+  
   return (
     <div className='game'>
         <p className='score'>
@@ -26,9 +37,16 @@ const Game = ({
         </div>
         <div className='letter-container'>
           <p>Tente adivinhar uma letra:</p>
-          <form>
-            <input type='text' name='letter' maxLength={1} required/>
-            <button>Jogar!</button>
+          <form onSubmit={(e) => handleSubmit(e)}>
+            <input 
+            type='text' 
+            name='letter' 
+            maxLength={1} 
+            required 
+            onChange={(e) => setLetter(e.target.value)}
+            value={letter}
+            ref={letterInputRef}/>
+            <button type='submit'>Jogar!</button>
           </form>
         </div>
         <div className='wrong-letters-container'>

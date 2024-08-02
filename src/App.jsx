@@ -25,9 +25,9 @@ function App() {
 
   const [guessedLetters, setGuessedLetters] = useState([]);
   const [wrongLetters, setWrongLetters] = useState([]);
-  const [guesses, setGuesses] = useState(5);
+  const [guesses, setGuesses] = useState(3);
   const [score, setScore] = useState(0);
-
+  
   const pickWordAndCategory = useCallback(() => {
     const categories = Object.keys(words);
     // pick a random category
@@ -90,9 +90,14 @@ function App() {
   
   // check win condition
   useEffect(() => {
+    /* impede que por algum motivo ainda desconhecido, assim como
+    estava ocorrendo esta função caia na  linha 97 
+    antes do usuário jogar o jogo  01/08/2024 - 23:35 */
+    if (letters.length == 0) return;
     const uniqueLetters = [... new Set(letters)];
     // win condition
     if (guessedLetters.length === uniqueLetters.length) {
+      console.log('ok')
       setScore((prevScore) => prevScore += 150);
       startGame();
     }
